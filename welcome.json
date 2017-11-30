@@ -1,0 +1,41 @@
+{
+    "attachments": [
+        {
+            "mrkdwn_in": [
+                "text"
+            ],
+            "author_name": "Aprende como utilizar reacciones con Emojis.",
+            "author_link": "https://get.slack.help/hc/es/articles/206870317-Las-reacciones-emoji",
+            "text": ":white_large_square: *Agrega un emoji como una reacción a éste mensaje* :thinking_face:",
+            "fields": [
+                {
+                    "value": "Puedes responder rápidamente a cualquier mensaje con una reacción emoji. Las reacciones pueden servir a muchos propósitos: votaciones, mostrar emoción, marcando tareas completas."
+                }
+            ]
+        }, {
+            "mrkdwn_in": [
+                "text"
+            ],
+            "author_name": "Aprende como fijar archivos y mensajes.",
+            "author_link": "https://get.slack.help/hc/es/articles/205239997-Fijar-con-una-chincheta-archivos-y-mensajes",
+            "text": ":white_large_square: *Fija éste mensaje* :round_pushpin:",
+            "fields": [
+                {
+                    "value": "Mensajes y archivos importantes pueden fijarse al detalle de cualquier canal o en mensajes directos."
+                }
+            ]
+        }, {
+            "mrkdwn_in": [
+                "text"
+            ],
+            "author_name": "Aprende como compartir mensajes.",
+            "author_link": "https://get.slack.help/hc/es/articles/203274767-Compartir-mensajes-en-Slack",
+            "text": ":white_large_square: *Comparte éste mensaje* :mailbox_with_mail:",
+            "fields": [
+                {
+                    "value": "Compartir mensajes en Slack ayuda a organizar las conversaciones."
+                }
+            ]
+        }
+    ]
+}
