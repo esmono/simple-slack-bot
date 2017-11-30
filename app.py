@@ -21,7 +21,6 @@ def _event_handler(event_type, slack_event):
     [obj] Objeto con la respuesta.
 
     """
-    print(slack_event)
     team_id = slack_event['team_id']
     event = slack_event.get('event')
     # TODO: Filter channel to main.
@@ -64,6 +63,16 @@ def _event_handler(event_type, slack_event):
             'Mensaje de bienvenida actualizado y fijado',
             200,
         )
+
+    # Evento - mensaje directo al bot
+    elif event_type == 'message' and event.get('text', '').find('<@U87FY8Q0L>') != -1:
+        # ¡Están llamando al bot directamente!
+        greetings_test = ['hola', 'hello']
+        user_id = event.get('user')
+        if any(word in event.get('text').lower() for word in greetings_test):
+            pyBot.simple_response_message(user_id, event.get('channel'), 'Hola!')
+        else:
+            pyBot.simple_response_message(user_id, event.get('channel'), 'No entiendo tu QUERY <¡ O.o ¡>')
 
     # Evento - No controlado.
     message = 'El evento `{}` no es manejado '.format(event_type)
