@@ -113,6 +113,16 @@ class Bot(object):
             text=message
         )
 
+    def simple_response_message(self, user_id, channel_id, message):
+        channel = channel_id
+        self.client.api_call(
+            "chat.postMessage",
+            channel=channel,
+            username=self.name,
+            icon_emoji=self.emoji,
+            text=message
+        )
+
     def update_emoji(self, team_id, user_id):
         """
         Update onboarding welcome message after recieving a "reaction_added"
@@ -191,10 +201,12 @@ class Bot(object):
         """
         # These updated attachments use markdown and emoji to mark the
         # onboarding task as complete
-        completed_attachments = {"text": ":white_check_mark: "
-                                         "~*Share this Message*~ "
-                                         ":mailbox_with_mail:",
-                                 "color": "#439FE0"}
+        completed_attachments = {
+            "text": ":white_check_mark: "
+            "~*Share this Message*~ "
+            ":mailbox_with_mail:",
+            "color": "#439FE0"
+        }
         # Grab the message object we want to update by team id and user id
         message_obj = self.messages[team_id].get(user_id)
         # Update the message's attachments by switching in incomplete
