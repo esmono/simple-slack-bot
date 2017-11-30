@@ -23,24 +23,26 @@ def _event_handler(event_type, slack_event):
     """
     print(slack_event)
     team_id = slack_event['team_id']
-    event = slack_event.get('event')
+    event = slack_event['event']
+    # Cambia aquí por el ID de tu bot
+    bot_id = 'U87FY8Q0L'
     # TODO: Filter channel to main.
     if event_type == 'member_joined_channel':
-        user_id = event.get('user')
+        user_id = event['user']
         pyBot.onboarding_message(team_id, user_id)
         return make_response('Mensaje de bienvenida enviado.', 200,)
 
     elif event_type == 'member_left_channel':
-        user_id = event.get('user')
+        user_id = event['user']
         pyBot.leaving_channel_message(user_id)
 
     # Evento - mensaje compartido.
     # Si el usuario ha compartido el mensaje de bienvenida, el tipo de
     # evento será 'message'. Pero también hay que revisar que el mensaje
     # en efecto sea compartido si encontramos la bandera 'is_shared'.
-    elif event_type == 'message' and event.get('attachments'):
-        user_id = event.get('user')
-        if event.get('attachments')[0].get('is_share'):
+    elif event_type == 'message' and event.get("attachments"):
+        user_id = event['user']
+        if event['attachments'][0]['is_share']:
             pyBot.update_share(team_id, user_id)
             return make_response(
                 'Mensaje de bienvenida actualizado con mensaje compartido',
@@ -49,7 +51,7 @@ def _event_handler(event_type, slack_event):
 
     # Evento - Reacción agregada.
     elif event_type == 'reaction_added':
-        user_id = event.get('user')
+        user_id = event['user']
         pyBot.update_emoji(team_id, user_id)
         return make_response(
             'Mensaje de bienvenida actualizado con un emoji',
@@ -66,7 +68,7 @@ def _event_handler(event_type, slack_event):
         )
 
     # Evento - mensaje directo al bot
-    elif event_type == 'message' and event.get('text', '').find('<@U87FY8Q0L>') != -1:
+    elif event_type == 'message' and event.get('text', '').find('<@{}>'.format(bot_id)) != -1:
         # ¡Están llamando al bot directamente!
         greetings_test = ['hola', 'hello']
         user_id = event.get('user')
@@ -131,7 +133,7 @@ def thanks():
     OAuth.
     """
     print(request.args)
-    code_arg = request.args.get('code')
+    code_arg = request.args['code']
     if not pyBot.auth(code_arg):
         return make_response(
             'Hubo un error al autorizar la aplicación.',

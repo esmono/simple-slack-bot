@@ -47,7 +47,8 @@ class Bot(object):
             client_secret=self.oauth['client_secret'],
             code=code
         )
-        if not auth_response.get('ok', False):
+        print(auth_response)
+        if not auth_response['ok']:
             return False
 
         team_id = auth_response["team_id"]
@@ -70,10 +71,10 @@ class Bot(object):
         dm_id: [str] id del DM creado por este método.
         """
         new_dm = self.client.api_call('im.open', user=user_id)
-        if not new_dm.get('ok'):
+        if not new_dm['ok']:
             return False
-        channel = new_dm.get('channel')
-        dm_id = channel.get('id')
+        channel = new_dm['channel']
+        dm_id = channel['id']
         return dm_id
 
     def onboarding_message(self, team_id, user_id):
