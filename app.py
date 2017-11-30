@@ -21,6 +21,7 @@ def _event_handler(event_type, slack_event):
     [obj] Objeto con la respuesta.
 
     """
+    print(slack_event)
     team_id = slack_event['team_id']
     event = slack_event.get('event')
     # TODO: Filter channel to main.
@@ -71,6 +72,8 @@ def _event_handler(event_type, slack_event):
         user_id = event.get('user')
         if any(word in event.get('text').lower() for word in greetings_test):
             pyBot.simple_response_message(user_id, event.get('channel'), 'Hola!')
+        elif 'donde está tu código' in event.get('text').lower():
+            pyBot.simple_response_message(user_id, event.get('channel'), 'https://github.com/esmono/simple-slack-bot')
         else:
             pyBot.simple_response_message(user_id, event.get('channel'), 'No entiendo tu QUERY <¡ O.o ¡>')
 
@@ -127,6 +130,7 @@ def thanks():
     aplicación. Aceptará el código temporal para manejar la autorización
     OAuth.
     """
+    print(request.args)
     code_arg = request.args.get('code')
     if not pyBot.auth(code_arg):
         return make_response(
