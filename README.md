@@ -25,6 +25,12 @@ Hay que crear una aplicacion de Slack.
 Y hay que agregar la aplicación al slack con un botón!
 [-> Botón <-](https://api.slack.com/docs/slack-button#add_the_slack_button)
 
+Importar el repositorio.
+git clone git@github.com:esmono/simple-slack-bot.git
+// Opcional crear un ambiente virtual
+mkvirtualenv --python=/usr/bin/python3.6 bot-chicken
+// Instalar los requerimientos (Dentro de la carpeta recién creada)
+pip install -r requirements.txt
 
 NOTA: IMPORTANTE! Como no se guarda información hay variables que se almacenan en la instancia de la aplicación,
 es importante tenerlo en cuenta para las pruebas.
